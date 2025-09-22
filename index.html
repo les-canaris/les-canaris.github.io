@@ -4,243 +4,364 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Les Canaris - Pourquoi nous sommes toutes et tous épuisé·es</title>
-    <meta name="description" content="Un texte sur l'épuisement collectif français et ce qui insiste malgré tout">
-    <meta name="keywords" content="épuisement, société, France, vivant, collectif, canaris">
-    <meta property="og:title" content="Les Canaris - Pourquoi nous sommes toutes et tous épuisé·es">
-    <meta property="og:description" content="Ce qui caractérise actuellement notre vie publique, c'est l'épuisement.">
-    <meta property="og:url" content="https://les-canaris.github.io">
+    <meta name="description" content="Nous sommes épuisés. Pas fatigués - épuisés. Les canaris tombent ? Parfait. C'est le signal. Les vivants se lèvent. Maintenant.">
+    <meta property="og:title" content="Pourquoi nous sommes toutes et tous épuisé·es">
+    <meta property="og:description" content="3,5% de la population suffit pour faire plier n'importe quel pouvoir. En France : 2,3 millions. Dans ta ville : quelques milliers.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://les-canaris.github.io/">
     
     <style>
+        :root {
+            --max-width: 650px;
+            --reading-ease: 1.6;
+            --paragraph-spacing: 1.8rem;
+            --section-spacing: 4rem;
+            --accent: #FFB800;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --bg: #fefefe;
+            --bg-accent: #FFF8E7;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.8;
-            color: #333;
-            background: #fafafa;
-            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: var(--reading-ease);
+            color: var(--text-primary);
+            background: var(--bg);
+            font-size: 18px;
         }
-        
+
         .container {
-            max-width: 750px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            background: white;
-            padding: 60px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            padding: 2rem;
         }
-        
-        h1 {
-            font-size: 3.5em;
-            margin-bottom: 0.3em;
-            color: #111;
-            font-weight: 300;
-            text-align: center;
+
+        /* Header avec le chapeau */
+        .header {
+            background: var(--bg-accent);
+            border-bottom: 3px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 248, 231, 0.95);
+        }
+
+        .chapeau {
+            padding: 3rem 2rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .chapeau h1 {
+            font-size: 2.2rem;
             line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-top: 0.5em;
+            margin-bottom: 2rem;
+            font-weight: 800;
         }
-        
-        .subtitle {
-            text-align: center;
-            color: #666;
-            font-style: italic;
-            margin-bottom: 4em;
-            font-size: 1.2em;
-            padding-bottom: 2em;
-            border-bottom: 1px solid #e0e0e0;
+
+        .chapeau p {
+            font-size: 1.1rem;
+            margin-bottom: var(--paragraph-spacing);
+            font-weight: 500;
         }
-        
-        .first-paragraph {
-            font-size: 1.3em;
-            line-height: 1.7;
-            font-weight: 400;
-            color: #222;
-            margin-bottom: 2em;
-            text-align: left;
-        }
-        
-        .first-paragraph::first-letter {
-            font-size: 4.5em;
-            float: left;
-            line-height: 0.85;
-            margin: 0 0.05em -0.1em 0;
-            font-weight: 400;
-            color: #333;
-        }
-        
-        p {
-            margin-bottom: 1.5em;
-            text-align: justify;
-        }
-        
-        strong {
+
+        .chapeau .signal {
+            font-size: 1.3rem;
             font-weight: 700;
-            color: #000;
-            background: linear-gradient(to bottom, transparent 60%, rgba(255, 220, 0, 0.3) 60%);
+            color: var(--text-primary);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--accent);
         }
-        
-        .key-phrase {
-            margin: 3em 0;
-            padding: 1.5em;
-            background: #f9f9f9;
-            border-left: 4px solid #333;
-            font-size: 1.2em;
-            line-height: 1.8;
-            font-style: italic;
-            text-align: center;
+
+        /* Indicateur de progression */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            z-index: 200;
         }
-        
-        .divider {
-            text-align: center;
-            margin: 3em 0;
-            color: #aaa;
-            font-size: 1.5em;
+
+        .progress {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.2s ease;
         }
-        
-        .ending {
-            margin-top: 4em;
-            padding-top: 2em;
-            border-top: 2px solid #333;
-        }
-        
-        .ending p {
-            font-size: 1.15em;
-            line-height: 1.9;
-            text-align: center;
-            margin-bottom: 1em;
-        }
-        
-        .signature {
-            text-align: center;
-            margin-top: 5em;
-            font-style: normal;
-            color: #333;
-            font-size: 1.1em;
-            padding: 2em 0;
-            border-top: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .share {
-            margin-top: 3em;
-            padding: 2.5em;
-            background: #f5f5f5;
-            text-align: center;
-            color: #555;
-            font-size: 1em;
-            border-radius: 8px;
-        }
-        
-        .share p:first-child {
-            font-size: 1.1em;
-            font-weight: 500;
-            color: #333;
-            margin-bottom: 1em;
-        }
-        
-        .share a {
-            color: #0066cc;
+
+        /* Bouton de lecture */
+        .cta-read {
+            display: inline-block;
+            background: var(--text-primary);
+            color: white;
+            padding: 1rem 2rem;
             text-decoration: none;
-            border-bottom: 2px solid #0066cc;
-            font-weight: 500;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        
-        .share a:hover {
-            color: #0052a3;
-            border-bottom-color: #0052a3;
+
+        .cta-read:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        
-        .share button:hover {
-            background: #000 !important;
-            transition: background 0.3s;
+
+        /* Corps du texte */
+        .main-text {
+            padding-top: var(--section-spacing);
         }
-        
+
+        .main-text p {
+            margin-bottom: var(--paragraph-spacing);
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        /* Mise en valeur des paragraphes clés */
+        .key-paragraph {
+            background: var(--bg-accent);
+            margin: var(--section-spacing) -2rem;
+            padding: 2rem;
+            border-left: 4px solid var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .key-paragraph p {
+            margin-bottom: 1rem;
+        }
+
+        /* Sections respirations */
+        .breath {
+            text-align: center;
+            margin: var(--section-spacing) 0;
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+
+        /* Section finale */
+        .finale {
+            margin-top: var(--section-spacing);
+            padding-top: var(--section-spacing);
+            border-top: 3px solid var(--accent);
+        }
+
+        .finale p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: var(--section-spacing);
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .ps {
+            background: var(--bg-accent);
+            margin: var(--section-spacing) -2rem 0;
+            padding: 2rem;
+            border-top: 2px solid var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: calc(var(--section-spacing) * 2);
+            padding: 3rem 2rem;
+            background: var(--text-primary);
+            color: white;
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .share-buttons {
+            margin: 2rem 0;
+        }
+
+        .share-buttons a {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            margin: 0.5rem;
+            background: white;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .share-buttons a:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navigation flottante */
+        .nav-float {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-float.visible {
+            opacity: 1;
+        }
+
+        .nav-float button {
+            background: var(--bg-accent);
+            border: 2px solid var(--accent);
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            font-size: 1.2rem;
+        }
+
+        .nav-float button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2em;
+            body {
+                font-size: 16px;
             }
-            
-            .container {
-                padding: 20px;
+
+            .chapeau h1 {
+                font-size: 1.8rem;
             }
-            
-            .first-paragraph {
-                font-size: 1.15em;
+
+            .nav-float {
+                display: none;
             }
-            
-            p {
+
+            .main-text p {
                 text-align: left;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .share a, .share button {
-                display: block !important;
-                width: 100%;
-                margin: 10px 0 !important;
+
+            .key-paragraph {
+                margin-left: -1rem;
+                margin-right: -1rem;
+                padding: 1rem;
+            }
+
+            .ps {
+                margin-left: -1rem;
+                margin-right: -1rem;
             }
         }
-        
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #1a1a1a;
-                color: #e0e0e0;
+
+        /* Animation d'entrée */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            
-            .container {
-                background: #222;
-                box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            
-            h1 {
-                color: #f0f0f0;
-            }
-            .first-paragraph {
-    color: #e0e0e0;
-}
-.first-paragraph::first-letter {
-    color: #f0f0f0;
-}
-p {
-    color: #e0e0e0;
-}
-            
-            strong {
-                color: #fff;
-                background: linear-gradient(to bottom, transparent 60%, rgba(255, 220, 0, 0.2) 60%);
-            }
-            
-            .key-phrase {
-                background: #2a2a2a;
-                border-left-color: #666;
-                color: #e0e0e0;
-            }
-            
-            .share {
-                background: #2a2a2a;
-                color: #ccc;
-            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Lecture immersive */
+        body.reading-mode {
+            background: #f4f1e8;
+        }
+
+        body.reading-mode .header {
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+
+        body.reading-mode .header:hover {
+            opacity: 1;
+        }
+
+        /* Séparateur */
+        .separator {
+            text-align: center;
+            margin: var(--section-spacing) 0;
+            color: var(--accent);
+            font-size: 2rem;
+            letter-spacing: 1rem;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Pourquoi nous sommes toutes et tous épuisé·es</h1>
-        <div class="subtitle">Un texte sur l'épuisement collectif et ce qui insiste malgré tout</div>
-        
-        <p class="first-paragraph">
-        Ce qui caractérise actuellement notre vie publique, c'est l'épuisement. Les Français sont épuisés. Non pas fatigués : la fatigue se répare par le repos. Épuisés : vidés de leur substance vitale par un effort qui n'a plus de sens et des fins de mois qui n'en finissent plus.
-        </p>
+    <!-- Barre de progression -->
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <!-- Header avec chapeau -->
+    <header class="header">
+        <div class="chapeau fade-in">
+            <h1>Pourquoi nous sommes toutes et tous épuisé·es</h1>
+            
+            <p><strong>Nous sommes épuisés. Pas fatigués - épuisés.</strong> L'infirmière à 1800€, la caissière à 1300€, le paysan endetté, le développeur qui code sa disparition. Pendant que nous nous vidons, 100 milliards partent en dividendes.</p>
+            
+            <p>Même logique partout : <strong>extraire</strong>. Notre travail, nos données, notre attention, nos ressources. Pendant qu'on nous divise (gauche/droite, public/privé), ceux qui pompent continuent tranquillement.</p>
+            
+            <p>Mais on sait maintenant. Et on est des millions à ne plus tenir. <strong>3,5% de la population suffit pour faire plier n'importe quel pouvoir.</strong> En France : 2,3 millions. Dans ta ville : quelques milliers.</p>
+            
+            <p>Alors on y va. Ton collègue qui craque ? Tu lui dis « moi aussi ». Vendredi 19h, salle municipale : « Épuisé·es ? On se parle. » Trois personnes suffisent.</p>
+            
+            <div class="signal">Les canaris tombent ? Parfait. C'est le signal.<br>Les vivants se lèvent.<br>Maintenant.</div>
+            
+            <a href="#texte-complet" class="cta-read">Lire le texte complet ↓</a>
+        </div>
+    </header>
+
+    <!-- Navigation flottante -->
+    <nav class="nav-float" id="nav-float">
+        <button onclick="scrollToTop()" title="Retour en haut">↑</button>
+        <button onclick="toggleReadingMode()" title="Mode lecture">📖</button>
+        <button onclick="shareText()" title="Partager">📤</button>
+    </nav>
+
+    <!-- Corps du texte -->
+    <main class="container main-text" id="texte-complet">
+        <h2 style="font-size: 2rem; margin-bottom: 2rem;">Pourquoi nous sommes toutes et tous épuisé·es</h2>
+
+        <p>Ce qui caractérise actuellement notre vie publique, c'est l'épuisement. Les Français sont épuisés. Non pas fatigués : la fatigue se répare par le repos. Épuisés : vidés de leur substance vitale par un effort qui n'a plus de sens et des fins de mois qui n'en finissent plus.</p>
 
         <p>Les infirmières soignent encore, avec toute leur science et leur cœur, mais dans des conditions qui les empêchent de soigner vraiment. Quinze minutes par patient quand il en faudrait une heure. Des lits qui ferment. Des collègues qui partent. Elles soignent, mais elles savent qu'elles ne soignent plus assez. Cette conscience de l'écart entre ce qu'elles font et ce qu'elles devraient pouvoir faire les ronge plus sûrement que la fatigue physique. Et le soir, elles comptent : 1800 euros pour sauver des vies.</p>
 
-        <p>Les caissières scannent huit heures par jour debout, sourire obligatoire, pour 1300 euros. Elles voient défiler la misère et l'opulence, les cartes refusées et les caddies qui débordent. Leurs dos hurlent, leurs jambes supplient, mais elles tiennent. Pour les enfants. Pour le loyer qui a encore augmenté.</p>
+        <p>Les caissières scannent huit heures par jour debout, sourire obligatoire, pour 1300 euros nets, temps partiel contraint. Elles voient défiler la misère et l'opulence, les cartes refusées et les caddies qui débordent. Leurs dos hurlent, leurs jambes supplient, mais elles tiennent. Pour les enfants. Pour le loyer qui a encore augmenté.</p>
 
-        <p>Les enseignants transmettent encore, mais à des classes si chargées que la transmission devient diffusion. Les livreurs pédalent sous la pluie pour 3 euros la course. Les femmes de ménage invisibles nettoient nos bureaux à 5h du matin pour un SMIC amputé.</p>
+        <p>Les enseignants transmettent encore, mais à des classes si chargées que la transmission devient diffusion. Les livreurs pédalent sous la pluie pour 3 euros la course. Les femmes de ménage invisibles nettoient nos bureaux à 5h du matin au SMIC mensuel rogné par le temps partiel imposé.</p>
 
         <p>Les paysans nourrissent encore - pour certains, c'est un combat quotidien contre un système qui voudrait qu'ils produisent plus, plus vite, moins cher. Ceux qui ont cédé au productivisme sont piégés : endettés, dépendants, obligés d'empoisonner la terre qui les a vus naître, premières victimes des cancers et dépressions. D'autres, toujours plus nombreux, reviennent à l'essentiel : ils soignent la terre au lieu de l'exploiter, nourrissent en vie et pas juste en calories. Ces paysans-là sont à l'avant-garde, même si leurs revenus restent précaires.</p>
 
@@ -250,7 +371,11 @@ p {
 
         <p>Et sur nos écrans, entre deux publicités, la guerre. Ukraine, Gaza, Soudan, et tous les conflits qu'on ne nomme même plus. Les images d'enfants sous les décombres entre deux stories Instagram. Les bombardements en direct entre le café du matin et les devoirs du soir. Nous scrollons l'horreur, impuissants, coupables de notre impuissance, épuisés de notre propre incapacité à ressentir encore. Trop d'images ont tué l'image. Trop de morts ont anesthésié la mort. Nous savons qu'on devrait être bouleversés, révoltés, mobilisés. Mais nous sommes juste épuisés. Épuisés de l'indignation sans effet, des pétitions sans suite, de la conscience sans pouvoir. Épuisés de porter le monde entier dans nos téléphones sans pouvoir rien pour lui.</p>
 
-        <p>Et ce que nous ne voyons pas : notre épuisement confortable repose sur l'épuisement extrême d'ailleurs. Les minerais de nos smartphones extraits par des enfants au Congo. Les vêtements à 5 euros cousus par des mains bangladaises pour 50 centimes par jour. Le café, le cacao, les fruits exotiques récoltés par des dos brisés pour que nous ayons notre dose quotidienne. Notre système n'épuise pas que nous - il épuise la planète entière, du plus proche au plus lointain.</p>
+        <p>Et ce que nous ne voyons pas : notre épuisement confortable repose sur l'épuisement extrême d'ailleurs. Et cet « ailleurs » commence aux portes de la République. En Guyane, à Mayotte, en Martinique, en Guadeloupe, à La Réunion, en Nouvelle-Calédonie, les mêmes mécaniques d'extraction tournent à plein régime depuis des siècles. L'or de Guyane qui enrichit les multinationales pendant que les jeunes de Cayenne galèrent sans emploi. Les bananes antillaises gavées de chlordécone qui empoisonnent les sols pour l'éternité. Les centres commerciaux de métropole qui vident les centres-villes de Pointe-à-Pitre. Le tourisme de masse qui transforme les plages en produits financiers pendant que les locaux ne peuvent plus se loger.</p>
+
+        <p>Cette France des outre-mer subit l'épuisement colonial en version moderne : exploitée pour ses ressources, utilisée comme laboratoire (nucléaire en Polynésie, spatial en Guyane), abandonnée quand ça ne rapporte plus. Leurs jeunes partent en métropole et découvrent un autre épuisement : celui d'être éternellement « de là-bas » dans un pays qui est pourtant le leur. Même épuisement, même extraction, même mépris. Sauf qu'eux, ils n'ont jamais eu l'illusion du confort.</p>
+
+        <p>Les minerais de nos smartphones extraits par des enfants au Congo. Les vêtements à 5 euros cousus par des mains bangladaises pour 50 centimes par jour. Le café, le cacao, les fruits exotiques récoltés par des dos brisés pour que nous ayons notre dose quotidienne. Notre système n'épuise pas que nous - il épuise la planète entière, du plus proche au plus lointain.</p>
 
         <p>Et dans cet épuisement, la tentation du mur. Puisqu'on ne peut plus, puisqu'on n'en peut plus, alors fermons. Désignons. Excluons. L'épuisement cherche des coupables, et tout un système les lui fournit. Les algorithmes qui nous enferment dans des bulles de rage. Les chaînes d'info qui transforment l'angoisse en audimat. Les éditorialistes qui soufflent sur les braises. Les milliardaires qui rachètent les médias pour orienter la colère loin d'eux. Plus de débat, que des combats. Plus d'écoute, que des camps. L'autre n'est plus un autre épuisé mais l'ennemi, le parasite, l'envahisseur. Nos frères d'humanité - ceux qui ont fui les guerres qu'on regarde sur nos écrans, ceux qui n'ont pas choisi où ils sont nés - transformés en boucs émissaires. L'épuisement ne produit pas que de la résignation, il produit aussi de la rage mal dirigée. Et cette rage fait vendre, fait cliquer, fait voter. Notre fatigue devient leur carburant. Notre désespoir, leur fonds de commerce.</p>
 
@@ -262,7 +387,16 @@ p {
 
         <p>Les près de cent milliards de dividendes du CAC40 ne tombent pas du ciel. Ils viennent de notre travail sous-payé, de nos impôts qui compensent les exonérations, de notre acceptation collective. Nous pointons les milliardaires, les politiques, les entreprises - mais qui achète leurs produits ? Qui vote pour eux ? Qui accepte, jour après jour, de faire tourner la machine ?</p>
 
+        <div class="key-paragraph">
+            <p>Mais distinguons bien. L'infirmière qui maintient l'hôpital, l'enseignant qui tient la classe, ne perpétuent pas le système - ils empêchent l'effondrement immédiat. Leur épuisement est un sacrifice, pas une complicité.</p>
+            <p>Le scandale n'est pas qu'ils continuent, mais qu'ils portent seuls ce qui devrait être notre combat collectif. Pendant qu'une minorité se sacrifie pour maintenir le vivable, le reste accepte en silence. C'est cette passivité collective qui permet au système de tenir.</p>
+        </div>
+
         <p>Le système n'est pas un complot de méchants contre les gentils. C'est plus pervers : nous sommes tous pris dedans. Le journaliste qui amplifie les peurs a aussi peur de perdre son job. Le politique qui ment est aussi prisonnier des sondages. L'actionnaire qui pressure est aussi pressé par d'autres actionnaires. Cercle vicieux où chacun perpétue ce qu'il subit. Et pendant qu'on s'épuise à nous disputer entre nous - public contre privé, ville contre campagne, jeunes contre vieux - ceux qui profitent vraiment du système continuent tranquillement. La question n'est pas « qui est le méchant ? » mais « comment on casse la boucle ? »</p>
+
+        <p>Pour casser la boucle, regardons qui tient les manettes. Non pour désigner des boucs émissaires, mais pour comprendre les mécaniques du pouvoir.<br>
+        Ce sont ceux qui transforment notre nourriture en produit spéculatif, pariant sur la faim comme au casino. Ceux qui écrivent les lois dans l'ombre, murmurant aux oreilles du pouvoir ce qui arrangera leurs affaires. Ceux qui concentrent les médias entre quelques mains et orchestrent nos divisions pour que jamais nous ne regardions vers le haut.<br>
+        Ils ne sont pas le système. Ils en tiennent les commandes. Et des commandes, ça se reprend.</p>
 
         <p>Même les dirigeants, même les entrepreneurs qui profitent le plus du système, sont des êtres humains avec des enfants qui leur demandent « Papa, Maman, pourquoi la planète meurt ? ». Certains savent. Ils rentrent chez eux avec cette connaissance. Le PDG du pétrolier sait ce que son industrie fait au climat. Le directeur de l'usine de pesticides connaît les études sur les cancers. Le patron de la plateforme numérique voit les courbes de dépression adolescente. Ils continuent quand même - pris dans leurs conseils d'administration, leurs actionnaires, leur propre piège doré. Leur responsabilité est plus grande, leurs choix moins contraints que ceux de la caissière. Mais ils sont humains. Et certains commencent à craquer. Des démissions surprises dans les hautes sphères. Des burn-out de dirigeants. Des héritiers qui refusent l'empire familial. Ce ne sont pas nos alliés automatiques, mais ce ne sont pas non plus des monstres. Ce sont des humains qui ont choisi le mauvais camp et qui pourraient - certains le font déjà - changer de camp.</p>
 
@@ -272,6 +406,11 @@ p {
 
         <p>Nous savons. Les rapports du GIEC nous ont dit pour le climat. Ceux de l'IPBES nous ont dit pire encore : ce n'est pas juste la température qui monte, c'est le tissu même du vivant qui se déchire. Les insectes disparaissent - 75% en trente ans. Les oiseaux se taisent. Les vers de terre, architectes invisibles de la fertilité, meurent sous les pesticides. La toile de la vie, ces millions d'interdépendances qui nous permettent d'exister, se défait maille après maille.</p>
 
+        <p>Neuf limites planétaires. Pas neuf problèmes séparés. Neuf fils de la même toile. Tirez-en un, tous les autres suivent. Le climat qui se dérègle assèche les sols. Les sols morts relâchent leur carbone et accélèrent le réchauffement. L'agriculture chimique pour compenser les sols morts empoisonne l'eau. L'eau polluée tue les océans. Les océans acidifiés captent de moins en moins de CO₂ : leur rôle de puits s'affaiblit. La boucle se referme. Mais le fil maître, celui qui tient tous les autres, c'est le vivant lui-même. Plus d'abeilles ? Plus de fruits. Plus de vers de terre ? Plus de sols fertiles. Plus de plancton ? Plus d'oxygène. La biodiversité n'est pas un luxe de bobos. C'est la machinerie invisible qui fait tout tourner. Les insectes qui pollinisent. Les bactéries qui décomposent. Les champignons qui nourrissent les arbres. Les oiseaux qui dispersent les graines. Tout ce petit peuple qu'on ne voit pas et qui nous maintient en vie.</p>
+
+        <p>Chaque espèce qui disparaît, c'est un rivet qui saute dans l'avion en plein vol. Combien avant le crash ? Personne ne sait. Mais on continue à les faire sauter. 75% d'insectes en moins. La moitié des vertébrés. Un tiers des oiseaux. Ce n'est pas une statistique. C'est le silence qui s'installe. Les étés sans bourdonnement. Les matins sans chants. Les sols qui deviennent de la poussière.<br>
+        Notre épuisement et celui du vivant, c'est le même. Les cancers qui explosent, les allergies qui déferlent, les dépressions qui nous rongent - c'est la même toile qui se déchire. Le système qui nous épuise épuise tout. C'est pour ça qu'on ne s'en sortira pas seul. Ni comme individus, ni comme espèce. Sauver les abeilles, c'est nous sauver. Régénérer les sols, c'est régénérer nos vies. Tout est lié. Notre résistance doit l'être aussi.</p>
+
         <p>Nous savons que nous sommes la première génération à vivre consciemment l'effondrement du monde qui nous porte. Les sols s'épuisent, l'eau devient rare, l'air irrespirable, et nous continuons comme si de rien n'était. Cette dissonance cognitive permanente nous épuise plus sûrement que n'importe quel travail. Conflits de valeur, injonctions contradictoires, perte de sens - ces poisons rongent nos vies comme ils rongent la société.</p>
 
         <p>Nos institutions continuent par inertie. L'hôpital qui ne soigne plus assez mais soigne encore un peu. L'école qui n'éduque plus mais garde les enfants. Les guichets qui ne traitent plus des personnes mais des dossiers. Les malades chroniques épuisés de prouver leur maladie. Tout fonctionne encore, mais vidé de son sens.</p>
@@ -280,9 +419,13 @@ p {
 
         <p>Et pendant ce temps, les factures tombent. Le gaz qui augmente. L'électricité qui flambe. Les courses dont le prix ne cesse d'augmenter. Le plein à 100 euros. Le découvert qui se creuse. L'angoisse du 15 du mois qui arrive déjà le 10, puis le 5, puis dès le 1er. Le choix impossible : les médicaments ou les courses ? Le chauffage ou l'essence ? L'appareil dentaire du petit ou le loyer ?</p>
 
-        <p>Et pourtant, même dans la précarité, nous restons accrochés à des conforts devenus vitaux. Le smartphone qu'on renouvelle. La voiture qu'on ne peut imaginer abandonner. La viande quotidienne. Le chauffage à 21 degrés. Les vacances en avion. Combien de ces "besoins" sont de vrais besoins ? Combien sont des habitudes qui nous enchaînent ? Distinguer l'essentiel du superflu devient impossible quand le système a transformé le superflu en marqueur social de dignité. En reconnaissant cela, on commence à voir plus clair. Non pour nous punir, mais pour retrouver ce qui nous rend vraiment libres.</p>
+        <p>Et pourtant, même dans la précarité, nous restons accrochés à des conforts devenus vitaux. Le smartphone qu'on renouvelle. La voiture qu'on ne peut imaginer abandonner. La viande quotidienne. Le chauffage à 21 degrés. Les vacances en avion. Combien de ces « besoins » sont de vrais besoins ? Combien sont des habitudes qui nous enchaînent ? Distinguer l'essentiel du superflu devient impossible quand le système a transformé le superflu en marqueur social de dignité. En reconnaissant cela, on commence à voir plus clair. Non pour nous punir, mais pour retrouver ce qui nous rend vraiment libres.</p>
 
-        <p>Tout le monde sait que ça ne tient plus. Le ministre de la santé le sait. Les directeurs d'hôpital le savent. Les soignants le savent. Les patients le savent. Mais tout le monde fait comme si, parce que l'alternative - l'effondrement total - semble pire que le maintien de cette fiction collective.</p>
+        <p>Amazon qui nous livre en 24h ce dont on n'avait pas besoin avant qu'ils nous persuadent qu'on en avait besoin. Netflix qui monétise notre ennui. Instagram qui vend notre solitude déguisée en connexion. Spotify qui transforme la musique en flux continu. Uber qui précarise le transport. Airbnb qui transforme nos villes en hôtels.<br>
+        Ces empires du vide nous vendent de la facilité empoisonnée. Avons-nous vraiment besoin qu'un algorithme choisisse nos films, nos musiques, nos trajets, nos rencontres ? Ou est-ce qu'on pourrait retrouver le plaisir de chercher, de découvrir, de se perdre ? Le plaisir d'être en retard, d'attendre, de s'ennuyer ?<br>
+        Chaque « disruption » nous a pris un peu plus de notre autonomie. Le GPS a tué notre sens de l'orientation. Les réseaux sociaux ont tué nos conversations. La livraison instantanée a tué notre patience. Les algorithmes ont tué notre curiosité. On appelle ça des services. C'est un vol organisé de nos capacités humaines.</p>
+
+        <p>Et face à cette dépossession organisée, tout le monde sait que ça ne tient plus. Le ministre de la santé le sait. Les directeurs d'hôpital le savent. Les soignants le savent. Les patients le savent. Mais tout le monde fait comme si, parce que l'alternative - l'effondrement total - semble pire que le maintien de cette fiction collective.</p>
 
         <p>Jamais nous n'avons été si nombreux, si connectés, et si seuls. Chacun porte sa part d'épuisement en silence, croyant être le seul à ne plus y arriver. La honte de ne plus tenir ce que tout le monde semble tenir. La honte, surtout, de ne plus joindre les deux bouts quand on travaille à temps plein. Sans savoir que le voisin du dessus choisit entre chauffer et manger, que la collègue souriante pleure dans sa voiture avant de rentrer.</p>
 
@@ -290,11 +433,11 @@ p {
 
         <p>Trois générations, trois épuisements, même impasse. Les jeunes sont épuisés d'avance, sachant qu'ils hériteront des dettes et des ruines. Épuisés avant même d'avoir commencé. Stage non payé, CDD qui s'enchaînent, loyer qui mange les trois quarts du salaire quand il y en a un. La promesse d'autonomie transformée en dépendance perpétuelle. Les actifs sont épuisés de porter un système qui les broie. Les anciens sont épuisés de voir s'effondrer ce qu'ils ont construit. Chaque génération porte sa forme particulière d'épuisement, sans voir que c'est le même.</p>
 
-        <div class="key-phrase">
-        Les premiers qui tombent ne sont pas les plus faibles. Comme les canaris dans les mines de charbon, ils sont les plus sensibles au gaz toxique que les autres ne sentent pas encore. Leur effondrement nous avertit. Le coup de grisou menace tout le monde.
+        <div class="key-paragraph">
+            <p>Les premiers qui tombent ne sont pas les plus faibles. Comme les canaris dans les mines de charbon, ils sont les plus sensibles au gaz toxique que les autres ne sentent pas encore. Leur effondrement nous avertit. Le coup de grisou menace tout le monde.</p>
         </div>
 
-        <p>Et pourtant, sous cet épuisement, sous cette précarité qui nous étrangle, quelque chose pulse encore. Quelque chose d'irréductible, d'indestructible. Quelque chose que ni les factures impayées ni les rapports du GIEC et de l'IPBES ne peuvent éteindre : <strong>nous sommes vivants.</strong></p>
+        <p>Et pourtant, sous cet épuisement, sous cette précarité qui nous étrangle, quelque chose pulse encore. Quelque chose d'irréductible, d'indestructible. Quelque chose que ni les factures impayées ni les rapports du GIEC et de l'IPBES ne peuvent éteindre : nous sommes vivants.</p>
 
         <p>Pas vivants comme une donnée administrative. Vivants comme les gardiens involontaires du bien commun. Dans chaque geste de soin, d'enseignement, de nourriture produite, nous maintenons ce qui fait tenir une société. Non pas le PIB ou la bourse, mais le tissu vivant des relations humaines. Cette richesse-là, nous la créons chaque jour, même épuisés. Elle nous appartient. Sur une planète qui a exactement la bonne distance de son étoile, avec exactement la bonne atmosphère, après 13,8 milliards d'années d'évolution cosmique et 3,8 milliards d'années d'évolution biologique, nous sommes là. Conscients. Capables de beauté, d'amour, de création.</p>
 
@@ -332,13 +475,9 @@ p {
 
         <p>La question n'est plus « comment tenir ? » mais « qu'est-ce qui mérite qu'on tienne ? » ; plus « comment payer les factures ? » mais « qu'est-ce qui n'a pas de prix ? » ; plus « comment sauver le système ? » mais « qu'est-ce qui, en nous, veut être sauvé ? » ; plus « comment faire tourner la machine ? » mais « comment honorer le miracle ? »</p>
 
-        <p>Ces questions ne sont pas rhétoriques. Elles sont vitales. Et leur réponse commence par une vérité difficile : <strong>le système ne tient que par notre consentement renouvelé chaque jour.</strong> Non pas un consentement joyeux - nous savons ce qu'il coûte. Mais un consentement par épuisement. Nous préférons l'usure connue au sevrage inconnu. Cette reconnaissance n'est pas une accusation. C'est le point de départ. On ne peut changer que ce qu'on accepte de voir. Elles sont le début de la respiration retrouvée. Le souffle qui revient quand on arrête de le retenir. L'énergie qui afflue quand on arrête de la gaspiller à maintenir ce qui est mort. Ni optimisme naïf ni pessimisme paralysant - les deux sont des fuites. Juste la lucidité de voir ce qui est et le courage d'agir malgré tout.</p>
+        <p>Ces questions ne sont pas rhétoriques. Elles sont vitales. Et leur réponse commence par une vérité difficile : le système ne tient que par notre consentement renouvelé chaque jour. Non pas un consentement joyeux - nous savons ce qu'il coûte. Mais un consentement par épuisement. Nous préférons l'usure connue au sevrage inconnu. Cette reconnaissance n'est pas une accusation. C'est le point de départ. On ne peut changer que ce qu'on accepte de voir. Elles sont le début de la respiration retrouvée. Le souffle qui revient quand on arrête de le retenir. L'énergie qui afflue quand on arrête de la gaspiller à maintenir ce qui est mort. Ni optimisme naïf ni pessimisme paralysant - les deux sont des fuites. Juste la lucidité de voir ce qui est et le courage d'agir malgré tout.</p>
 
-        <div class="key-phrase">
-        Le système ne tient que par notre consentement renouvelé chaque jour.
-        </div>
-
-        <p>Les Français ne font plus semblant. Ils se rappellent qu'ils sont vivants. Et dans ce rappel, les contours d'autre chose se dessinent. Non pas un programme mais une évidence : si nous créons collectivement la richesse, pourquoi n'en déciderions-nous pas collectivement l'usage ? Si nos soins maintiennent la société, pourquoi les soins ne seraient-ils pas au centre de toute décision ? Si la terre nous nourrit, pourquoi la détruisons-nous ?</p>
+        <p>Nous ne faisons plus semblant. Nous nous rappelons que nous sommes vivants. Et dans ce rappel, les contours d'autre chose se dessinent. Non pas un programme mais une évidence : si nous créons collectivement la richesse, pourquoi n'en déciderions-nous pas collectivement l'usage ? Si nos soins maintiennent la société, pourquoi les soins ne seraient-ils pas au centre de toute décision ? Si la terre nous nourrit, pourquoi la détruisons-nous ?</p>
 
         <p>Ce ne sont plus des questions naïves. Ce sont les fondements d'une politique du vivant contre l'économie de la mort. Une politique qui mettrait le soin - des humains, de la terre, du tissu social - au centre. Qui reconnaîtrait que l'infirmière crée plus de valeur que le trader. Que le paysan qui régénère ses sols vaut plus que celui qui les épuise. Que le temps passé à élever un enfant vaut plus que le temps passé à optimiser un algorithme de surveillance. Cette politique du vivant n'attend pas le grand soir. Elle commence maintenant, dans les interstices du système qui craque. Un par un d'abord. Puis par grappes. Puis par vagues.</p>
 
@@ -348,21 +487,28 @@ p {
 
         <p>Ce n'est pas une révolution violente. C'est une révolution par la respiration. Reprendre ce qui nous appartient : d'abord notre souffle, puis notre parole. La Convention citoyenne pour le climat l'a montré : des gens ordinaires peuvent comprendre des enjeux complexes, débattre, proposer. Mais regardons aussi pourquoi ça n'a pas marché : leurs propositions ont été vidées, détricotées, ignorées. La leçon ? Il ne suffit pas de délibérer, il faut aussi le pouvoir d'imposer. La démocratie sans rapport de force reste un théâtre. Et ce rapport de force ne sera pas qu'électoral. Ceux qui profitent du système ne lâcheront rien sans combattre. Attendez-vous à la répression, à la division orchestrée, aux coups tordus. C'est le prix. Toujours.</p>
 
-        <p>Alors commençons par respirer. Une respiration que l'on reprend après avoir trop longtemps retenu son souffle. Celle qui rappelle que l'air existe, qu'il est gratuit (une des dernières choses gratuites), qu'il est partagé, qu'il nous relie tous dans le même besoin et le même soulagement.</p>
+        <p>Face à cette violence annoncée, que faire ? Commençons par respirer. Une respiration que l'on reprend après avoir trop longtemps retenu son souffle. Celle qui rappelle que l'air existe, qu'il est gratuit (une des dernières choses gratuites), qu'il est partagé, qu'il nous relie tous dans le même besoin et le même soulagement.</p>
 
-        <p>Inspirer. Expirer. Ensemble.</p>
+        <div class="breath">
+            <p>Inspirer. Expirer. Ensemble.</p>
+        </div>
 
         <p>Et entre les deux, le vide. Ce temps suspendu où rien ne se passe. L'ennui d'où naît la créativité. Le silence d'où surgit la parole vraie. Ce vide que notre société comble frénétiquement et qui est pourtant la condition de toute renaissance.</p>
 
         <p>Et peut-être commencer par refuser. À la fête de l'angoisse, nous ne sommes pas obligés d'essayer tous les manèges. Refuser le crédit qui enchaîne. Refuser le renouvellement inutile. Refuser la course à la consommation. Refuser de voter pour ceux qui reconduisent les mêmes politiques. Non pas s'abstenir - c'est leur faire cadeau de notre silence. Mais voter en sachant, en exigeant, en surveillant. Et entre deux élections, ne pas disparaître. Refuser de travailler pour ceux qui détruisent. Chaque refus est un grain de sable dans la machine. Assez de grains de sable et la machine grippe.</p>
 
-        <p>Puis construire. Mais pas n'importe quoi. L'usine de pesticides qui ferme ? Tant mieux. Mais que deviennent les 200 salariés ? C'est là qu'il faut inventer : reconversion vers quoi ? Avec quel accompagnement ? Quel revenu pendant la transition ? Un revenu de transition, comme pour les mineurs quand les mines ont fermé. Pas l'aumône : la reconnaissance que quand la société décide de changer, elle ne laisse personne au bord de la route. La question n'est plus de sauver tous les emplois mais de sauver tous les travailleurs. De passer de l'économie qui détruit à celle qui répare. Certains métiers vont disparaître - c'est nécessaire. Mais les gens qui les exercent ne doivent pas disparaître avec. Le soudeur de l'usine de pesticides connaît son métier. Ce savoir-faire peut servir ailleurs : réparer au lieu de produire, entretenir au lieu de jeter. La dignité n'est pas dans ce qu'on fabrique mais dans le travail bien fait.</p>
+        <p>Un grain seul est balayé. Pour gripper la machine, il faut la tempête organisée.<br>
+        Trouve un autre épuisé. Un seul. Parlez. Puis trouvez-en un troisième. À dix, vous existez. À cent, le maire vous reçoit. À mille, il plie. C'est bête comme stratégie. C'est pour ça que ça marche. Et nous sommes plus nombreux qu'on ne croit. La spirale du silence nous fait sous-estimer massivement combien partagent notre épuisement. On se tait, croyant être seuls. Mais les sondages le montrent : 82% s'inquiètent du climat. La pétition Duplomb ? 2 millions en 10 jours, partie d'une étudiante de 23 ans. Le pont entre trois personnes et trois millions existe : c'est la visibilité de notre nombre réel. Les fonds d'entraide pour tenir quand on dit non. Les circuits courts pour manger sans enrichir ceux qui nous affament. Les médias libres pour raconter ce que les autres taisent. Tout ça existe, éparpillé. Connectez les fils. L'épuisement solitaire devient force collective.</p>
+
+        <p>Mais comment s'attaquer aux vrais géants ? Amazon, BlackRock, les GAFAM ? La réponse est dans le réseau. Chaque assemblée locale peut devenir un nœud d'un filet plus large. Boycott coordonné. Désinvestissement massif. Grève des données. Retrait collectif des banques qui financent la destruction. Mille assemblées qui disent « non » simultanément pèsent plus lourd qu'un gouvernement isolé. Les multinationales ont besoin de nos achats, de nos données, de notre consentement. Sans nous, elles ne sont rien. Le local connecté devient global.</p>
+
+        <p>Mais détruire ne suffit pas. Il faut aussi construire l'alternative. Soyons francs : on n'a pas de solution miracle pour les millions d'emplois toxiques. L'ouvrier de Total le sait. Son job disparaîtra de toute façon - effondrement, automatisation ou transition. La question : subira-t-il seul ou s'organisera-t-on ensemble ? L'usine de pesticides qui ferme ? Tant mieux. Mais que deviennent les 200 salariés ? C'est là qu'il faut inventer : reconversion vers quoi ? Avec quel accompagnement ? Quel revenu pendant la transition ? Un revenu de transition, comme pour les mineurs quand les mines ont fermé. Pas l'aumône : la reconnaissance que quand la société décide de changer, elle ne laisse personne au bord de la route. La question n'est plus de sauver tous les emplois mais de sauver tous les travailleurs. De passer de l'économie qui détruit à celle qui répare. Certains métiers vont disparaître - c'est nécessaire. Mais les gens qui les exercent ne doivent pas disparaître avec. Le soudeur de l'usine de pesticides connaît son métier. Ce savoir-faire peut servir ailleurs : réparer au lieu de produire, entretenir au lieu de jeter. La dignité n'est pas dans ce qu'on fabrique mais dans le travail bien fait.</p>
 
         <p>C'est ça le vrai défi : organiser la transition sans sacrifier les humains et tous les êtres vivants non humains. Les syndicats le savent depuis longtemps. Les associations le font déjà. Mais seuls, ils s'épuisent aussi. C'est ensemble - organisations et citoyens - qu'on peut peser. Retrouver ce qui marchait avant que tout devienne marchandise. L'entraide entre voisins au lieu de l'assurance. Le coup de main au lieu du devis. L'échange de savoirs au lieu de la formation payante. Les espaces partagés au lieu de tout privatiser. Pas besoin d'attendre le grand soir. Commencer là où on est, avec qui on peut, comme on peut.</p>
 
         <p>Le point de départ est peut-être aussi simple que ça. Et c'est ce qui le rend puissant.</p>
 
-        <div class="divider">* * *</div>
+        <div class="separator">• • •</div>
 
         <p>Le miracle n'est pas que nous puissions changer le monde. Le miracle est que nous soyons là, conscients, ensemble, capables de nous émerveiller de ce fait. Même les poches vides. Même le ventre creux. Même épuisés.</p>
 
@@ -372,67 +518,142 @@ p {
 
         <p>Et de se rappeler que les plus belles choses - l'air, un sourire, une main tendue, un cœur qui bat - sont encore gratuites. Pour l'instant.</p>
 
-        <p>Réveillons-nous. Tentons de nous parler, même si c'est difficile. Dans certains lieux, ça commence : des gens qui ne votent pas pareil se retrouvent autour de l'école qui ferme, du médecin qui part. Ils découvrent qu'ils ont les mêmes galères. C'est un début. Comment faire ? Commencer petit. Un tract dans la boîte aux lettres : « Parlons de notre quartier. » Une réunion dans la salle municipale. Sans parti, sans étiquette. Juste des voisins qui partagent le même code postal et les mêmes problèmes.</p>
+        <p>Réveillons-nous. Tentons de nous parler, même si c'est difficile. Dans certains lieux, ça commence : des gens qui ne votent pas pareil se retrouvent autour de l'école qui ferme, du médecin qui part. Ils découvrent qu'ils ont les mêmes galères. C'est un début.</p>
 
-        <p>Nous savons maintenant. Le système ne tient que par notre consentement collectif - un consentement contraint pour les plus précaires, épuisé pour la plupart, mais consentement quand même. La rupture ne peut venir que d'un refus organisé et solidaire. Non pas chacun dans son coin avec son compost et son vélo - ça, c'est le piège. Mais ensemble : ceux qui peuvent créent des filets de sécurité pour ceux qui ne peuvent pas encore. Des caisses de grève pour les démissions. Des cantines solidaires pour les familles qui boycottent. Des réseaux d'entraide pour tenir face à la répression. Si 10% s'organisent pour permettre à 20% de suivre, puis 30%, le système devra plier. C'est une stratégie, pas une utopie. C'est déjà commencé.</p>
+        <p>Plus de camps. Plus d'étiquettes. Le petit patron qui ferme et l'employé viré touchent le même mépris. La grand-mère qui n'ose plus sortir et le jeune contrôlé dix fois par jour subissent le même abandon. Le paysan endetté et l'intermittent précaire ont le même découvert.<br>
+        Pendant qu'on s'étripe sur les réseaux, d'autres se gavent. Ils adorent nos divisions. Ça les protège. Continuez à vous haïr si ça vous chante. Mais sachez que votre voisin d'en face galère comme vous. Et que votre ennemi commun se marre de vous voir vous battre pour des miettes.</p>
 
-        <div class="ending">
-            <p><strong>Le temps presse.</strong></p>
-            <p><strong>Les canaris tombent.</strong></p>
-            <p>Mais nous construisons les filets.</p>
-            <p><strong>L'alarme sonne.</strong></p>
-            <p><strong>Maintenant.</strong></p>
+        <p>Si ce texte vous semble trop à gauche ou trop à droite, c'est que vous cherchez encore à le ranger dans une case. Il n'en a pas. De Gaulle voulait la participation. Le Conseil National de la Résistance parlait d'évincer « les féodalités économiques ». Même Pompidou disait : « Arrêtez d'emmerder les Français. » Droite historique, gauche historique, tous savaient qu'une société ne tient pas avec trop d'inégalités.<br>
+        Ce n'est plus gauche contre droite. Ce n'est plus ceux qui produisent contre ceux qui prélèvent. Cette opposition est piégée. Elle nous divise alors qu'il faut s'unir. Le vrai clivage traverse tout : ceux qui régénèrent contre ceux qui extractent. Ceux qui soignent les sols contre ceux qui les épuisent. Ceux qui réparent le tissu social contre ceux qui le déchirent. Ceux qui préservent les communs contre ceux qui les privatisent.</p>
+
+        <p>L'infirmière qui soigne régénère. Le paysan qui fait du compost régénère. L'enseignant qui transmet régénère. Le bénévole qui répare régénère. Peu importe qu'ils soient salariés, indépendants, publics ou privés. Ce qui compte, c'est l'effet de leur travail sur le vivant.<br>
+        En face : ceux qui extractent. La plus-value, les données, les minerais, l'attention, l'énergie vitale. Ils peuvent être patrons ou salariés, de droite ou de gauche. Ce qui compte, c'est qu'ils pompent plus qu'ils ne donnent. Qu'ils appauvrissent le système au lieu de l'enrichir.</p>
+
+        <p>Comment faire ? Commencer petit. Un tract dans la boîte aux lettres : « Parlons de notre quartier. » Une réunion dans la salle municipale. Sans parti, sans étiquette. Juste des voisins qui partagent le même code postal et les mêmes problèmes.</p>
+
+        <p>Nous savons maintenant. Le système ne tient que par notre consentement collectif - un consentement contraint pour les plus précaires, épuisé pour la plupart, mais consentement quand même. La rupture ne peut venir que d'un refus organisé et solidaire. Non pas chacun dans son coin avec son compost et son vélo - ça, c'est le piège. Mais ensemble : ceux qui peuvent créent des filets de sécurité pour ceux qui ne peuvent pas encore. Des caisses de grève pour les démissions. Des cantines solidaires pour les familles qui boycottent. Des réseaux d'entraide pour tenir face à la répression. Si 10% s'organisent pour permettre à 20% de suivre, puis 30%, le système devra plier. C'est une stratégie, pas une utopie. C'est déjà commencé. Les historiens des mouvements sociaux le confirment : 3,5% de la population dans la rue, aucun pouvoir ne tient. Trois virgule cinq. En France, c'est deux millions trois cent mille. Dans ta ville, quelques milliers. Dans ton quartier, trois cents personnes. C'est le seuil où tout bascule. Documenté sur un siècle de luttes. On y est presque.</p>
+
+        <p>Et ce souffle, il traverse déjà les frontières. L'épuisement n'a pas de passeport. En Espagne, en Grèce, en Italie, partout les mêmes symptômes : services publics découpés par l'austérité, jeunes sacrifiés sur l'autel de la dette, paysans qui bloquent les routes pour ne pas mourir. À Madrid comme à Athènes, l'héritage des grandes assemblées de places publiques irrigue encore des centaines de collectifs qui se battent contre les expulsions, pour la gratuité des soins. À Berlin, des jardins partagés fleurissent sur les friches du Mur. En Italie, des coopératives historiques et nouvelles prouvent qu'une économie sans actionnaires est possible.</p>
+
+        <p>Ces 3,5% ? Il faut d'abord les atteindre ici, dans nos quartiers, nos villes, nos régions. Puis les connecter. Un réseau de territoires épuisés qui se parlent, s'entraident, inventent ensemble. Car ce qui marche à Loos-en-Gohelle peut inspirer un village grec. Ce qui germe en Andalousie peut essaimer en Bretagne. L'Europe des capitales nous divise. L'Europe des territoires peut nous réunir.</p>
+
+        <p>Le compte à rebours n'est pas politique. Il est biologique, physique, chimique. Dès cette décennie, des boucles de rétroaction peuvent s'emballer de concert. Le climat qui bascule. Les sols qui meurent définitivement. L'eau douce qui manque. Des pans entiers de forêts deviennent émettrices de carbone. Les océans qui cessent de réguler. La biodiversité qui s'effondre en cascade.</p>
+
+        <p>Il n'y aura pas de grand signal. Juste une dégradation continue jusqu'à ce que vivre devienne survivre, puis survivre devienne impossible.</p>
+
+        <p>Ce n'est pas une limite ou l'autre. C'est tout en même temps. Comme un corps en défaillance multi-organes. Le foie qui lâche entraîne les reins qui entraînent le cœur. Pour le vivant, c'est pareil. Chaque seuil franchi accélère les autres. On n'a plus le temps de traiter les problèmes un par un.</p>
+
+        <div class="key-paragraph">
+            <p>La biologie ne négocie pas. La physique ne vote pas. La chimie se fout de nos opinions. Elles appliquent leurs lois. Et leurs lois convergent vers le même ultimatum : maintenant ou trop tard.</p>
+        </div>
+
+        <p>Partout, la même logique nous épuise : extraire, optimiser, jeter. Du quartier populaire au centre-ville, des îles aux campagnes. Les Corses étouffés par le tourisme de masse et les Picards abandonnés par l'État. Les Martiniquais empoisonnés au chlordécone et les Nordistes par l'industrie chimique.<br>
+        Partout, les mêmes profitent : ceux qui possèdent sans produire, qui décident sans subir. Et partout, les mêmes résistent : ceux qui soignent, qui réparent, qui transmettent. Le moment est venu de nous reconnaître.</p>
+
+        <p>Le temps presse. Les canaris tombent.</p>
+
+        <p>Mais nous savons maintenant. Nous savons qu'on ne tient plus. Nous savons qu'on est des millions à ne plus tenir. Nous savons que c'est maintenant ou jamais.</p>
+
+        <div class="finale">
+            <p>Alors on y va. Pas dans l'idéal. Maintenant. Ton collègue qui craque ? Tu lui dis « moi aussi ». Ton voisin qui galère ? Tu partages ce texte. Vendredi soir, 19h, salle municipale : « Épuisé·es ? On se parle. » Trois personnes suffisent pour commencer.</p>
             
-            <p>Même si maintenant prendra des années. L'urgence n'est pas de réussir demain mais de commencer aujourd'hui. Les canaris tombent, mais nous construisons lentement. C'est la tragédie et c'est la seule voie.</p>
+            <p>Les canaris tombent ? Parfait. C'est le signal.</p>
+            <p>Les vivants se lèvent.</p>
+            <p>Maintenant.</p>
         </div>
 
         <div class="signature">
             [Les Canaris, septembre 2025]
         </div>
-        
-        <div class="share">
-            <p><strong>Ce texte est libre.</strong></p>
-            <p>Copiez-le, partagez-le, modifiez-le.<br>
-            Il appartient à celles et ceux qui s'y reconnaissent.</p>
-            
-            <p style="margin-top: 2em;">Si ces mots résonnent en vous, ne les gardez pas.<br>
-            La solitude organisée est ce qui nous tue.</p>
-            
-            <!-- BOUTONS DE PARTAGE -->
-            <div style="margin: 2em 0;">
-                <a href="mailto:?subject=Les Canaris - Un texte sur notre épuisement collectif&body=Je voulais partager ce texte avec toi : https://les-canaris.github.io%0D%0A%0D%0ACe qui caractérise actuellement notre vie publique, c'est l'épuisement...%0D%0A%0D%0ALis-le en entier sur : https://les-canaris.github.io" 
-                   style="display: inline-block; margin: 0 5px; padding: 10px 20px; background: #333; color: white; text-decoration: none; border-radius: 4px; font-size: 0.95em;">
-                    📧 Partager ce texte
-                </a>
-                
-                <button onclick="navigator.clipboard.writeText('https://les-canaris.github.io'); this.textContent='✓ Lien copié !'; setTimeout(()=>{this.textContent='📋 Copier le lien'},2000)" 
-                        style="display: inline-block; margin: 0 5px; padding: 10px 20px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.95em; font-family: inherit;">
-                    📋 Copier le lien
-                </button>
+
+        <div class="ps">
+            <p><strong>PS :</strong> Qui sommes-nous ? Comme Éléonore Pattery (23 ans, étudiante, qui a mobilisé 2 millions de personnes sans parti ni organisation) nous sommes personne et tout le monde. Infirmières, enseignants, paysans, développeurs. Pas un collectif structuré. Juste des épuisé·es qui ont décidé de ne plus se taire seuls. Le premier qui organise un « vendredi 19h » devient un canari. C'est ainsi que ça commence.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="share-buttons">
+                <a href="#" onclick="shareOnTwitter(); return false;">Twitter</a>
+                <a href="#" onclick="shareOnFacebook(); return false;">Facebook</a>
+                <a href="#" onclick="shareByEmail(); return false;">Email</a>
+                <a href="#" onclick="copyLink(); return false;">Copier le lien</a>
             </div>
             
-            <!-- SÉPARATEUR -->
-            <div style="margin: 3em 0; border-top: 1px solid #ddd;"></div>
-            
-            <!-- CONTACT - VERSION HONNÊTE -->
-            <p style="font-size: 0.95em; color: #666;">
-                <strong>Pour témoigner, partager un écho :</strong><br>
-                <a href="mailto:les_canaris@proton.me" style="color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc;">
-                    les_canaris@proton.me
-                </a>
+            <p style="margin-top: 2rem;">
+                <a href="https://les-canaris.github.io/texte-complet.txt" download style="color: var(--accent);">Télécharger le texte complet (.txt)</a>
             </p>
             
-            <p style="margin-top: 1em; font-size: 0.85em; color: #888; font-style: italic;">
-                Cette adresse est consultée irrégulièrement.<br>
-                N'attendez pas forcément de réponse individuelle.<br>
-                Vos mots sont lus, ils nourrissent la réflexion collective.<br>
-                Si ce texte doit avoir une suite, elle viendra de tous.
-            </p>
-            
-            <p style="margin-top: 2em; font-size: 0.9em; color: #666;">
-                URL permanente : <a href="https://les-canaris.github.io">les-canaris.github.io</a>
+            <p style="margin-top: 3rem; font-size: 0.9rem; opacity: 0.8;">
+                Ce texte est libre. Partagez-le, imprimez-le, affichez-le, transformez-le.<br>
+                L'important n'est pas qui l'a écrit mais ce qu'on en fait.<br><br>
+                Contact : <span style="color: var(--accent);">les-canaris [at] proton.me</span>
             </p>
         </div>
-    </div>
+    </footer>
+
+    <script>
+        // Barre de progression
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+            
+            // Afficher la navigation flottante après scroll
+            const navFloat = document.getElementById('nav-float');
+            if (winScroll > 500) {
+                navFloat.classList.add('visible');
+            } else {
+                navFloat.classList.remove('visible');
+            }
+        });
+
+        // Fonctions de navigation
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleReadingMode() {
+            document.body.classList.toggle('reading-mode');
+        }
+
+        // Fonctions de partage
+        function shareOnTwitter() {
+            const text = "Les canaris tombent ? Parfait. C'est le signal. Les vivants se lèvent. Maintenant.";
+            const url = window.location.href;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+        }
+
+        function shareOnFacebook() {
+            const url = window.location.href;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        }
+
+        function shareByEmail() {
+            const subject = "Pourquoi nous sommes toutes et tous épuisé·es";
+            const body = "Les canaris tombent ? Parfait. C'est le signal. Les vivants se lèvent. Maintenant.\n\n" + window.location.href;
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Lien copié !');
+            });
+        }
+
+        function shareText() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Les Canaris - Pourquoi nous sommes toutes et tous épuisé·es',
+                    text: 'Les canaris tombent ? Parfait. C'est le signal. Les vivants se lèvent.',
+                    url: window.location.href
+                });
+            } else {
+                copyLink();
+            }
+        }
+    </script>
 </body>
 </html>
