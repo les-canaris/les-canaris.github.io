@@ -11,109 +11,71 @@
     <meta property="og:url" content="https://les-canaris.github.io/">
     
     <style>
-        :root {
-            --max-width: 650px;
-            --reading-ease: 1.6;
-            --paragraph-spacing: 1.8rem;
-            --section-spacing: 4rem;
-            --accent: #FFB800;
-            --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --bg: #fefefe;
-            --bg-accent: #FFF8E7;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: var(--reading-ease);
-            color: var(--text-primary);
-            background: var(--bg);
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fefefe;
             font-size: 18px;
         }
 
+        .header {
+            background: #FFF8E7;
+            border-bottom: 3px solid #FFB800;
+            padding: 3rem 2rem;
+        }
+
         .container {
-            max-width: var(--max-width);
+            max-width: 650px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        /* Header avec le chapeau */
-        .header {
-            background: var(--bg-accent);
-            border-bottom: 3px solid var(--accent);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 248, 231, 0.95);
-        }
-
-        .chapeau {
-            padding: 3rem 2rem;
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .chapeau h1 {
+        h1 {
             font-size: 2.2rem;
             line-height: 1.2;
             margin-bottom: 2rem;
             font-weight: 800;
         }
 
+        h2 {
+            font-size: 2rem;
+            margin: 3rem 0 2rem;
+        }
+
+        p {
+            margin-bottom: 1.8rem;
+            text-align: justify;
+        }
+
         .chapeau p {
             font-size: 1.1rem;
-            margin-bottom: var(--paragraph-spacing);
             font-weight: 500;
         }
 
-        .chapeau .signal {
+        .signal {
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--text-primary);
             margin-top: 2rem;
             padding-top: 2rem;
-            border-top: 2px solid var(--accent);
+            border-top: 2px solid #FFB800;
         }
 
-        /* Indicateur de progression */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            z-index: 200;
-        }
-
-        .progress {
-            height: 100%;
-            background: var(--accent);
-            width: 0%;
-            transition: width 0.2s ease;
-        }
-
-        /* Bouton de lecture */
         .cta-read {
             display: inline-block;
-            background: var(--text-primary);
+            background: #1a1a1a;
             color: white;
             padding: 1rem 2rem;
             text-decoration: none;
             border-radius: 4px;
             font-weight: 600;
             margin-top: 1rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .cta-read:hover {
@@ -121,83 +83,56 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* Corps du texte */
-        .main-text {
-            padding-top: var(--section-spacing);
-        }
-
-        .main-text p {
-            margin-bottom: var(--paragraph-spacing);
-            text-align: justify;
-            hyphens: auto;
-        }
-
-        /* Mise en valeur des paragraphes clés */
         .key-paragraph {
-            background: var(--bg-accent);
-            margin: var(--section-spacing) -2rem;
+            background: #FFF8E7;
+            margin: 3rem -2rem;
             padding: 2rem;
-            border-left: 4px solid var(--accent);
-            font-size: 1.1rem;
+            border-left: 4px solid #FFB800;
         }
 
-        .key-paragraph p {
-            margin-bottom: 1rem;
-        }
-
-        /* Sections respirations */
         .breath {
             text-align: center;
-            margin: var(--section-spacing) 0;
+            margin: 3rem 0;
             font-size: 1.3rem;
             font-weight: 300;
-            color: var(--text-secondary);
+            color: #4a4a4a;
         }
 
-        /* Section finale */
         .finale {
-            margin-top: var(--section-spacing);
-            padding-top: var(--section-spacing);
-            border-top: 3px solid var(--accent);
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 3px solid #FFB800;
         }
 
         .finale p {
             font-size: 1.2rem;
-            line-height: 1.5;
             font-weight: 600;
-            margin-bottom: 1rem;
+        }
+
+        .ps {
+            background: #FFF8E7;
+            margin: 3rem -2rem 0;
+            padding: 2rem;
+            border-top: 2px solid #FFB800;
         }
 
         .signature {
             text-align: right;
-            margin-top: var(--section-spacing);
+            margin-top: 3rem;
             font-style: italic;
-            color: var(--text-secondary);
+            color: #4a4a4a;
         }
 
-        .ps {
-            background: var(--bg-accent);
-            margin: var(--section-spacing) -2rem 0;
-            padding: 2rem;
-            border-top: 2px solid var(--accent);
-        }
-
-        /* Footer */
         footer {
-            margin-top: calc(var(--section-spacing) * 2);
-            padding: 3rem 2rem;
-            background: var(--text-primary);
+            background: #1a1a1a;
             color: white;
-        }
-
-        .footer-content {
-            max-width: var(--max-width);
-            margin: 0 auto;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
             text-align: center;
         }
 
-        .share-buttons {
-            margin: 2rem 0;
+        footer a {
+            color: #FFB800;
         }
 
         .share-buttons a {
@@ -205,129 +140,32 @@
             padding: 0.8rem 1.5rem;
             margin: 0.5rem;
             background: white;
-            color: var(--text-primary);
+            color: #1a1a1a;
             text-decoration: none;
             border-radius: 4px;
             font-weight: 600;
-            transition: transform 0.2s ease;
         }
 
-        .share-buttons a:hover {
-            transform: scale(1.05);
-        }
-
-        /* Navigation flottante */
-        .nav-float {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-float.visible {
-            opacity: 1;
-        }
-
-        .nav-float button {
-            background: var(--bg-accent);
-            border: 2px solid var(--accent);
-            padding: 0.5rem;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            font-size: 1.2rem;
-        }
-
-        .nav-float button:hover {
-            transform: scale(1.1);
-        }
-
-        /* Mobile */
         @media (max-width: 768px) {
             body {
                 font-size: 16px;
             }
-
-            .chapeau h1 {
+            h1 {
                 font-size: 1.8rem;
             }
-
-            .nav-float {
-                display: none;
+            .key-paragraph, .ps {
+                margin-left: -1rem;
+                margin-right: -1rem;
             }
-
-            .main-text p {
+            p {
                 text-align: left;
             }
-
-            .key-paragraph {
-                margin-left: -1rem;
-                margin-right: -1rem;
-                padding: 1rem;
-            }
-
-            .ps {
-                margin-left: -1rem;
-                margin-right: -1rem;
-            }
-        }
-
-        /* Animation d'entrée */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        /* Lecture immersive */
-        body.reading-mode {
-            background: #f4f1e8;
-        }
-
-        body.reading-mode .header {
-            opacity: 0.3;
-            transition: opacity 0.3s ease;
-        }
-
-        body.reading-mode .header:hover {
-            opacity: 1;
-        }
-
-        /* Séparateur */
-        .separator {
-            text-align: center;
-            margin: var(--section-spacing) 0;
-            color: var(--accent);
-            font-size: 2rem;
-            letter-spacing: 1rem;
         }
     </style>
 </head>
 <body>
-    <!-- Barre de progression -->
-    <div class="progress-bar">
-        <div class="progress" id="progress"></div>
-    </div>
-
-    <!-- Header avec chapeau -->
     <header class="header">
-        <div class="chapeau fade-in">
+        <div class="container chapeau">
             <h1>Pourquoi nous sommes toutes et tous épuisé·es</h1>
             
             <p><strong>Nous sommes épuisés. Pas fatigués - épuisés.</strong> L'infirmière à 1800€, la caissière à 1300€, le paysan endetté, le développeur qui code sa disparition. Pendant que nous nous vidons, 100 milliards partent en dividendes.</p>
@@ -344,16 +182,8 @@
         </div>
     </header>
 
-    <!-- Navigation flottante -->
-    <nav class="nav-float" id="nav-float">
-        <button onclick="scrollToTop()" title="Retour en haut">↑</button>
-        <button onclick="toggleReadingMode()" title="Mode lecture">📖</button>
-        <button onclick="shareText()" title="Partager">📤</button>
-    </nav>
-
-    <!-- Corps du texte -->
-    <main class="container main-text" id="texte-complet">
-        <h2 style="font-size: 2rem; margin-bottom: 2rem;">Pourquoi nous sommes toutes et tous épuisé·es</h2>
+    <main class="container" id="texte-complet">
+        <h2>Pourquoi nous sommes toutes et tous épuisé·es</h2>
 
         <p>Ce qui caractérise actuellement notre vie publique, c'est l'épuisement. Les Français sont épuisés. Non pas fatigués : la fatigue se répare par le repos. Épuisés : vidés de leur substance vitale par un effort qui n'a plus de sens et des fins de mois qui n'en finissent plus.</p>
 
@@ -453,7 +283,7 @@
 
         <p>Cette insistance de la vie n'est pas une consolation. C'est un rappel. Le rappel que nous sommes les dépositaires temporaires d'un phénomène inouï : la matière devenue consciente d'elle-même.</p>
 
-        <p>Et si notre épuisement n'était que l'effet de l'oubli de cette évidence ? Nous nous épuisons à faire tourner des systèmes morts en oubliant que nous sommes vivants. Nous nous épuisons à maintenir des fictions en oubliant le réel de notre présence ici et maintenant.</p>
+        <p>Et si notre épuisement n'était que l'effet de l'oubli de cette évidence ? Nous nous épuisés à faire tourner des systèmes morts en oubliant que nous sommes vivants. Nous nous épuisons à maintenir des fictions en oubliant le réel de notre présence ici et maintenant.</p>
 
         <p>L'énergie perdue à faire semblant, c'est l'énergie détournée de la seule tâche qui vaille : honorer le fait d'être vivant, ensemble, sur cette planète, à ce moment précis de l'histoire cosmique.</p>
 
@@ -508,7 +338,7 @@
 
         <p>Le point de départ est peut-être aussi simple que ça. Et c'est ce qui le rend puissant.</p>
 
-        <div class="separator">• • •</div>
+        <p style="text-align: center; margin: 3rem 0;">——</p>
 
         <p>Le miracle n'est pas que nous puissions changer le monde. Le miracle est que nous soyons là, conscients, ensemble, capables de nous émerveiller de ce fait. Même les poches vides. Même le ventre creux. Même épuisés.</p>
 
@@ -571,89 +401,24 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="container">
             <div class="share-buttons">
-                <a href="#" onclick="shareOnTwitter(); return false;">Twitter</a>
-                <a href="#" onclick="shareOnFacebook(); return false;">Facebook</a>
-                <a href="#" onclick="shareByEmail(); return false;">Email</a>
-                <a href="#" onclick="copyLink(); return false;">Copier le lien</a>
+                <a href="https://twitter.com/intent/tweet?text=Les%20canaris%20tombent%20%3F%20Parfait.%20C%27est%20le%20signal.%20Les%20vivants%20se%20l%C3%A8vent.%20Maintenant.&url=https://les-canaris.github.io/" target="_blank">Twitter</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://les-canaris.github.io/" target="_blank">Facebook</a>
+                <a href="mailto:?subject=Pourquoi%20nous%20sommes%20toutes%20et%20tous%20%C3%A9puis%C3%A9%C2%B7es&body=Les%20canaris%20tombent%20%3F%20Parfait.%20C%27est%20le%20signal.%20Les%20vivants%20se%20l%C3%A8vent.%20Maintenant.%0A%0Ahttps://les-canaris.github.io/">Email</a>
             </div>
             
             <p style="margin-top: 2rem;">
-                <a href="https://les-canaris.github.io/texte-complet.txt" download style="color: var(--accent);">Télécharger le texte complet (.txt)</a>
+                <a href="texte-complet.txt" download>Télécharger le texte complet (.txt)</a>
             </p>
             
             <p style="margin-top: 3rem; font-size: 0.9rem; opacity: 0.8;">
                 Ce texte est libre. Partagez-le, imprimez-le, affichez-le, transformez-le.<br>
                 L'important n'est pas qui l'a écrit mais ce qu'on en fait.<br><br>
-                Contact : <span style="color: var(--accent);">les-canaris [at] proton.me</span>
+                Contact : les-canaris [at] proton.me
             </p>
         </div>
     </footer>
-
-    <script>
-        // Barre de progression
-        window.addEventListener('scroll', () => {
-            const winScroll = document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progress').style.width = scrolled + '%';
-            
-            // Afficher la navigation flottante après scroll
-            const navFloat = document.getElementById('nav-float');
-            if (winScroll > 500) {
-                navFloat.classList.add('visible');
-            } else {
-                navFloat.classList.remove('visible');
-            }
-        });
-
-        // Fonctions de navigation
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleReadingMode() {
-            document.body.classList.toggle('reading-mode');
-        }
-
-        // Fonctions de partage
-        function shareOnTwitter() {
-            const text = "Les canaris tombent ? Parfait. C'est le signal. Les vivants se lèvent. Maintenant.";
-            const url = window.location.href;
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
-        }
-
-        function shareOnFacebook() {
-            const url = window.location.href;
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-        }
-
-        function shareByEmail() {
-            const subject = "Pourquoi nous sommes toutes et tous épuisé·es";
-            const body = "Les canaris tombent ? Parfait. C'est le signal. Les vivants se lèvent. Maintenant.\n\n" + window.location.href;
-            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        }
-
-        function copyLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                alert('Lien copié !');
-            });
-        }
-
-        function shareText() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Les Canaris - Pourquoi nous sommes toutes et tous épuisé·es',
-                    text: 'Les canaris tombent ? Parfait. C'est le signal. Les vivants se lèvent.',
-                    url: window.location.href
-                });
-            } else {
-                copyLink();
-            }
-        }
-    </script>
 </body>
 </html>
