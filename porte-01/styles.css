@@ -179,6 +179,17 @@ blockquote {
   color: var(--ink);
 }
 
+.care-note {
+  margin: 0 0 1.35rem;
+  padding: 0.7rem 0 0.75rem 1rem;
+  border-left: 3px solid var(--accent);
+  color: var(--ink);
+}
+
+.care-note-soft {
+  color: var(--muted);
+}
+
 .source-link {
   font-weight: 650;
 }
@@ -252,6 +263,11 @@ blockquote {
   line-height: 1.28;
 }
 
+.sheet-guard .sheet-alert {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
 .sheet-guard p:last-child {
   margin-bottom: 0;
 }
@@ -306,6 +322,12 @@ blockquote {
   line-height: 1.35;
 }
 
+.sheet-help {
+  margin: -0.05rem 0 0.15rem;
+  font-size: 0.62rem;
+  line-height: 1.24;
+}
+
 .sheet-close {
   margin-top: 0.75rem;
   padding-top: 0.55rem;
@@ -356,11 +378,13 @@ blockquote {
 
   .sheet-wrap {
     padding: 0.8rem;
-    overflow-x: auto;
+    overflow-x: visible;
   }
 
   .sheet-page {
-    width: 210mm;
+    width: 100%;
+    min-height: auto;
+    padding: 1rem;
   }
 }
 
