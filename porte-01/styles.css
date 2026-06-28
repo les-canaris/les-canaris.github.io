@@ -213,7 +213,7 @@ blockquote {
   padding: 14mm 15mm;
   background: #ffffff;
   color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .sheet-head h1 {
@@ -230,7 +230,7 @@ blockquote {
 .sheet-close,
 .sheet-address {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #000000;
 }
 
@@ -241,7 +241,7 @@ blockquote {
 
 .sheet-guard {
   margin-top: 0.7rem;
-  padding: 0.65rem 0;
+  padding: 0.8rem 0 0.9rem;
   border-top: 1px solid #000000;
   border-bottom: 1px solid #000000;
 }
