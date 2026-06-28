@@ -227,7 +227,8 @@ blockquote {
 .sheet-head p,
 .sheet-guard p,
 .sheet-zone p,
-.sheet-close {
+.sheet-close,
+.sheet-address {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #000000;
@@ -311,6 +312,12 @@ blockquote {
   border-top: 1px solid #000000;
   font-size: 0.86rem;
   font-weight: 700;
+}
+
+.sheet-address {
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  line-height: 1.25;
 }
 
 @media (max-width: 520px) {
